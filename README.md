@@ -1,1 +1,3 @@
-# Projet-CI
+**REQUIREMENTS**
+
+### Django Base
