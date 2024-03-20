@@ -32,17 +32,18 @@ class DbTestCase(TestCase) :
 
     def testGetUser(self):
         user = User.objects.get(username="testerbob")
-
-        self.assertTrue(dbf.getUser(user))
+        
+        self.assertEquals(dbf.getUser(user),user)
 
     def testGetUsersFromGroup(self):
-        groupe = Group.objects.get(name="groupeTest")
+        users = User.objects.filter(group = "1")
 
-        self.assertTrue(dbf.getUsersFromGroup(groupe))
+        self.assertQuerySetEqual(users,dbf.getUsersFromGroup("groupeTest"))
 
     def testGetAllUsers(self):
-
-        self.assertTrue(dbf.getAllUsers())
+        users = User.objects.all()
+        print(users)
+        self.assertQuerySetEqual(users,dbf.getAllUsers())
 
     def testCreateUser(self):
         user = User.objects.get(username="testerbob")
