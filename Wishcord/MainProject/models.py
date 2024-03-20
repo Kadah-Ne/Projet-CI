@@ -5,7 +5,7 @@ from django.db import models
 class User(models.Model) :
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length = 255, null = False)
-    group = models.ForeignKey('Group',on_delete = models.CASCADE)
+    group = models.ForeignKey('Group',on_delete = models.CASCADE,null = True)
     isAdmin = models.BooleanField(default = False)
 
 class Group(models.Model) :
