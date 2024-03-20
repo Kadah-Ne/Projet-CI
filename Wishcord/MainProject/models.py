@@ -11,4 +11,3 @@ class User(models.Model) :
 class Group(models.Model) :
     id = id = models.AutoField(primary_key=True)
     name = models.CharField(max_length = 255, null = False)
-    listUsers = models.For
