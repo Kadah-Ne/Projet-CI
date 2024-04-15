@@ -7,6 +7,8 @@ body
     flex-direction: column;
     align-items: center;
     background-image: url("../images/BackGround.png");
+    background-repeat: no-repeat;
+    background-size: cover;
     overflow-x: hidden;
     overflow-y: hidden;
 }
@@ -57,16 +59,18 @@ h1
             radial-gradient(circle at 0 0, #ffffff 0, #ffffff 19px, transparent 19px) 100% 100%/30px 30px no-repeat,
             linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 22px) calc(100% - 60px) no-repeat,
             linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 60px) calc(100% - 22px) no-repeat,
-            linear-gradient(27deg, rgba(78, 208, 27, 0.84) 0%, rgba(56, 134, 36, 0.5) 2.913%, #3ee20c 76.094%, transparent 100%),
-            radial-gradient(at 7% 60%, #0b7522 0%, #aafd11 45.122%, #18f08b 47.609%, #56e51e 81.7%, #377406 100%) 51% 92%/122% 165%;
+            linear-gradient(27deg, #5f70be 0%, #5f70be 2.913%, #c101cb 76.094%, transparent 100%),
+            radial-gradient(at 7% 60%, #5f70be 0%, #d900e1 45.122%, #254cf8 47.609%, #4d02b0 81.7%, #04f2ff 100%) 51% 92%/122% 165%;
     border-radius: 30px;
     padding: 18px;
     box-sizing: content-box;
 }
 .menu_item_title.titleMain{
-    padding-top: 30px;
-    color: rgb(0, 0, 0);
+    padding-top: 2vh;
+    color: #5f70be;
     text-shadow: 1px 1px 0 #b3b3b3;
+    font-weight: bolder;
+    font-size: 50px;
 }
 .selectionGridColumn{
     display: flex;
@@ -222,14 +226,14 @@ h1
     padding-bottom: 10px;
 }
 .menu_item_image{
-    border: 8px double #20C900;
+    border: 8px double #5f70be;
     border-radius: 40px;
 }
 
 
 
 .inputLogin{
-    border: 4px solid #20C900;
+    border: 4px solid #5f70be;
     border-radius: 20px;
     width: 250px;
     height: 40px;
