@@ -1,3 +1,7 @@
+from django.db.models import F
+from django.db.models import DEFERRED
+from MainProject.models import *
+
 def addToGroup(user,group) :
     return 0
 
@@ -5,7 +9,13 @@ def removeFromGroup(user, group):
     return 0
 
 def createGroup(name):
-    return 0
+    try:
+        groupe=Group(name)
+        groupe.save()
+        return 1
+    
+    except:
+        raise Exception("insert group failed")
 
 def deleteGroup(name):
     return 0
@@ -20,7 +30,13 @@ def getAllUsers():
     return [None, None, None]
 
 def createUser(username):
-    return 0
+    try:
+        user=User(DEFERRED, username, 0, False)
+        user.save()
+        return 1
+    
+    except:
+        raise Exception("insert user failed")
 
 def deleteUser(username):
     return 0

@@ -33,7 +33,7 @@ class DbTestCase(TestCase) :
     def testGetUser(self):
         user = User.objects.get(username="testerbob")
         
-        self.assertEquals(dbf.getUser(user),user)
+        self.assertEqual(dbf.getUser(user),user)
 
     def testGetUsersFromGroup(self):
         users = User.objects.filter(group = "1")
