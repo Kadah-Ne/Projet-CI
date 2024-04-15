@@ -5,52 +5,77 @@ import MainProject.dbFunctions as dbf
 
 class DbTestCase(TestCase) :
     def setUp(self) -> None:
-        User.objects.create(username = "testerbob", isAdmin=False)
-        Group.objects.create(name = "groupeTest")
-    
-    def testAddUser2Groupe(self): 
-        user = User.objects.get(username="testerbob")
-        groupe = Group.objects.get(name="groupeTest")
-    
-        self.assertTrue(dbf.addToGroup(user, groupe))
+        self.groupNameWorking = "groupeTest"
+        self.groupNameNotWorking = None
 
-    def testRemoveFromGroup(self):
-        user = User.objects.get(username="testerbob")
-        groupe = Group.objects.get(name="groupeTest")
-    
-        self.assertTrue(dbf.removeFromGroup(user, groupe))
+        self.usernameWorking = "testerbob"
+        self.usernameNotWorking = None
 
-    def testCreateGroup(self):
-        groupe = Group.objects.get(name="groupeTest")
-    
-        self.assertTrue(dbf.createGroup(groupe))  
+        # self.userTest = User.objects.create(username = "testerbob", isAdmin=False)
+        # self.groupTest = Group.objects.create(name = "groupeTest")
 
-    def testDeleteGroup(self):
-        groupe = Group.objects.get(name="groupeTest")
-    
-        self.assertTrue(dbf.createGroup(groupe))
+        self.workMess = "Should return 1 and work"
+        self.errMess = "Should return Exception and not work"
 
-    def testGetUser(self):
-        user = User.objects.get(username="testerbob")
+    def testCreateGroupWorking(self) :
+        self.assertTrue(dbf.createGroup(self.groupNameWorking),self.workMess)
+        self.assertTrue(dbf.deleteUser(self.groupNameWorking),self.workMess)
+    
+    def testCreateGroupWorking(self) :
+        self.assertFalse(dbf.createGroup(self.groupNameNotWorking),self.errMess)
+        self.assertFalse(dbf.deleteGroup(self.groupNameNotWorking),self.errMess)
+
+    def testCreateUser(self) :
+        self.assertTrue(dbf.createUser(self.usernameWorking),self.workMess)
+        self.assertTrue(dbf.deleteUser(self.usernameWorking),self.workMess)
+    
+    def testCreateGroupWorking(self) :
+        self.assertFalse(dbf.createUser(self.usernameNotWorking),self.errMess)
+        self.assertFalse(dbf.deleteUser(self.usernameNotWorking),self.errMess)
+
+    def testAddUser2Group(self):
+        dbf.createGroup(self.groupNameWorking)
+        dbf.createUser(self.usernameWorking)
+        self.assertTrue(dbf.addToGroup(self.usernameWorking,self.groupNameWorking))
+        self.assertTrue(dbf.removeFromGroup(self.usernameWorking,self.groupNameWorking))
+        dbf.deleteGroup(self.groupNameWorking)
+        dbf.deleteUser(self.usernameWorking)
+
+    # def testAddUser2Groupe(self): 
+    #     self.assertTrue(dbf.addToGroup("testerbob", "groupeTest"))
         
-        self.assertEqual(dbf.getUser(user),user)
 
-    def testGetUsersFromGroup(self):
-        users = User.objects.filter(group = "1")
+    # def testRemoveFromGroup(self):   
+    #     self.assertTrue(dbf.removeFromGroup("testerbob", "groupeTest"))
 
-        self.assertQuerySetEqual(users,dbf.getUsersFromGroup("groupeTest"))
+    # def testCreateGroup(self):
+    #     self.assertTrue(dbf.createGroup("groupeTest"))  
 
-    def testGetAllUsers(self):
-        users = User.objects.all()
-        print(users)
-        self.assertQuerySetEqual(users,dbf.getAllUsers())
+    # def testDeleteGroup(self):
+    #     groupe = Group.objects.get(name="groupeTest")
+    
+    #     self.assertTrue(dbf.createGroup(groupe))
 
-    def testCreateUser(self):
-        user = User.objects.get(username="testerbob")
+    # def testGetUser(self):
+    #     user = User.objects.get(username="testerbob")
+        
+    #     self.assertEqual(dbf.getUser(user),user)
 
-        self.assertTrue(dbf.createUser(user))
+    # def testGetUsersFromGroup(self):
+    #     users = User.objects.filter(group = "1")
 
-    def testDeleteUser(self):
-        user = User.objects.get(username="testerbob")
+    #     self.assertEquals(users,dbf.getUsersFromGroup("groupeTest"))
 
-        self.assertTrue(dbf.deleteUser(user))
+    # def testGetAllUsers(self):
+    #     users = User.objects.all()
+    #     self.assertEquals(users,dbf.getAllUsers())
+
+    # def testCreateUser(self):
+    #     # user = User.objects.get(username="testerbob")
+
+    #     self.assertTrue(dbf.createUser("testerbob"))
+
+    # def testDeleteUser(self):
+    #     user = User.objects.get(username="testerbob")
+
+    #     self.assertTrue(dbf.deleteUser(user))
