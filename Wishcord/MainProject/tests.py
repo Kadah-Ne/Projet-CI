@@ -14,24 +14,26 @@ class DbTestCase(TestCase) :
         self.userTest = User.objects.create(username = "testerbob", isAdmin=False)
         self.groupTest = Group.objects.create(name = "groupeTest")
 
-        self.workMess = "Should return 1 and work"
-        self.errMess = "Should return Exception and not work"
+        self.workNbMess = "Should return 1 and work"
+        self.errNbMess = "Should return Exception and not work"
 
+        self.workNotNullMess = "Should not be 0"
+        self.errNotNullMess = "Should be 0"
     def testCreateGroupWorking(self) :
-        self.assertTrue(dbf.createGroup(self.groupNameWorking),self.workMess)
-        self.assertTrue(dbf.deleteUser(self.groupNameWorking),self.workMess)
+        self.assertTrue(dbf.createGroup(self.groupNameWorking),self.workNbMess)
+        self.assertTrue(dbf.deleteUser(self.groupNameWorking),self.workNbMess)
     
     def testCreateGroupWorking(self) :
-        self.assertFalse(dbf.createGroup(self.groupNameNotWorking),self.errMess)
-        self.assertFalse(dbf.deleteGroup(self.groupNameNotWorking),self.errMess)
+        self.assertFalse(dbf.createGroup(self.groupNameNotWorking),self.errNbMess)
+        self.assertFalse(dbf.deleteGroup(self.groupNameNotWorking),self.errNbMess)
 
     def testCreateUser(self) :
-        self.assertTrue(dbf.createUser(self.usernameWorking),self.workMess)
-        self.assertTrue(dbf.deleteUser(self.usernameWorking),self.workMess)
+        self.assertTrue(dbf.createUser(self.usernameWorking),self.workNbMess)
+        self.assertTrue(dbf.deleteUser(self.usernameWorking),self.workNbMess)
     
     def testCreateGroupWorking(self) :
-        self.assertFalse(dbf.createUser(self.usernameNotWorking),self.errMess)
-        self.assertFalse(dbf.deleteUser(self.usernameNotWorking),self.errMess)
+        self.assertFalse(dbf.createUser(self.usernameNotWorking),self.errNbMess)
+        self.assertFalse(dbf.deleteUser(self.usernameNotWorking),self.errNbMess)
 
     def testAddUser2Group(self):
         dbf.createGroup(self.groupNameWorking)
@@ -42,46 +44,24 @@ class DbTestCase(TestCase) :
         dbf.deleteUser(self.usernameWorking)
 
     def testGetGroups(self):
-        self.assertNotEquals(dbf.getGroups(),0,"Should be 1")
+        self.assertNotEquals(dbf.getGroups(),0,self.workNotNullMess)
         dbf.createGroup("TestGroup2")
-        self.assertNotEquals(dbf.getGroups(),0,"Should be 2")
+        self.assertNotEquals(dbf.getGroups(),0,self.workNotNullMess)
         dbf.deleteGroup("TestGroup2")
 
-    # def testAddUser2Groupe(self): 
-    #     self.assertTrue(dbf.addToGroup("testerbob", "groupeTest"))
-        
+    def testGetUsers(self):
+        self.assertNotEquals(dbf.getAllUsers(),0,self.workNotNullMess)
+        dbf.createUser("User2")
+        self.assertNotEquals(dbf.getAllUsers(),0,self.workNotNullMess)
+        dbf.deleteUser("User2")
 
-    # def testRemoveFromGroup(self):   
-    #     self.assertTrue(dbf.removeFromGroup("testerbob", "groupeTest"))
-
-    # def testCreateGroup(self):
-    #     self.assertTrue(dbf.createGroup("groupeTest"))  
-
-    # def testDeleteGroup(self):
-    #     groupe = Group.objects.get(name="groupeTest")
-    
-    #     self.assertTrue(dbf.createGroup(groupe))
-
-    # def testGetUser(self):
-    #     user = User.objects.get(username="testerbob")
-        
-    #     self.assertEqual(dbf.getUser(user),user)
-
-    # def testGetUsersFromGroup(self):
-    #     users = User.objects.filter(group = "1")
-
-    #     self.assertEquals(users,dbf.getUsersFromGroup("groupeTest"))
-
-    # def testGetAllUsers(self):
-    #     users = User.objects.all()
-    #     self.assertEquals(users,dbf.getAllUsers())
-
-    # def testCreateUser(self):
-    #     # user = User.objects.get(username="testerbob")
-
-    #     self.assertTrue(dbf.createUser("testerbob"))
-
-    # def testDeleteUser(self):
-    #     user = User.objects.get(username="testerbob")
-
-    #     self.assertTrue(dbf.deleteUser(user))
+    def testGetUser(self):
+        self.assertEquals(dbf.getUser(self.usernameWorking),self.userTest,self.workNotNullMess)
+        self.assertNotEquals(dbf.getUser(self.usernameNotWorking),self.userTest,self.errNotNullMess)
+    def testGetGroup(self) :
+        self.assertEquals(dbf.getGroup(self.groupNameWorking),self.groupTest,self.workNotNullMess)
+        self.assertEquals(dbf.getGroup(self.groupNameNotWorking),None,self.errNotNullMess)
+    def testGetUsersFromGroup(self):
+        dbf.addToGroup(self.usernameWorking,self.groupNameWorking)
+        self.assertEqual(dbf.getUsersFromGroup(self.groupNameWorking),[self.userTest],self.workNotNullMess)
+        self.assertNotEqual(dbf.getUsersFromGroup(self.groupNameNotWorking),[self.userTest],self.errNotNullMess)

@@ -65,13 +65,20 @@ def deleteUser(username):
     
 def getUser(username):
     try:
-        return User.objects.filter(username=username)
+        return User.objects.filter(username=username).first()
     except:
+        return 0
+
+def getGroup(name):
+    try:
+        return Group.objects.filter(name=name).first()
+    except :
         return 0
 
 def getUsersFromGroup(name):
     try:
-        return User.objects.filter(Group=name)
+        idGrp = getGroup(name).id
+        return list(User.objects.filter(group = idGrp))
     except:
         return 0
     
