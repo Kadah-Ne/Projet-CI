@@ -64,10 +64,20 @@ def deleteUser(username):
         return 0
     
 def getUser(username):
-    return None
+    try:
+        return User.objects.filter(username=username)
+    except:
+        return 0
 
 def getUsersFromGroup(name):
-    return [None, None, None]
+    try:
+        return User.objects.filter(Group=name)
+    except:
+        return 0
+    
 
 def getAllUsers():
-    return [None, None, None]
+    try:
+        return User.objects.all()
+    except:
+        return 0
