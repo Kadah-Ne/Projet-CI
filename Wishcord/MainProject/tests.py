@@ -11,8 +11,8 @@ class DbTestCase(TestCase) :
         self.usernameWorking = "testerbob"
         self.usernameNotWorking = None
 
-        # self.userTest = User.objects.create(username = "testerbob", isAdmin=False)
-        # self.groupTest = Group.objects.create(name = "groupeTest")
+        self.userTest = User.objects.create(username = "testerbob", isAdmin=False)
+        self.groupTest = Group.objects.create(name = "groupeTest")
 
         self.workMess = "Should return 1 and work"
         self.errMess = "Should return Exception and not work"
@@ -40,6 +40,12 @@ class DbTestCase(TestCase) :
         self.assertTrue(dbf.removeFromGroup(self.usernameWorking,self.groupNameWorking))
         dbf.deleteGroup(self.groupNameWorking)
         dbf.deleteUser(self.usernameWorking)
+
+    def testGetGroups(self):
+        self.assertNotEquals(dbf.getGroups(),0,"Should be 1")
+        dbf.createGroup("TestGroup2")
+        self.assertNotEquals(dbf.getGroups(),0,"Should be 2")
+        dbf.deleteGroup("TestGroup2")
 
     # def testAddUser2Groupe(self): 
     #     self.assertTrue(dbf.addToGroup("testerbob", "groupeTest"))

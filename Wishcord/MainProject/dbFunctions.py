@@ -39,7 +39,7 @@ def deleteGroup(name):
     except:
         return 0
     
-def getGroup():
+def getGroups():
     try:
         return Group.objects.all()
     except:
