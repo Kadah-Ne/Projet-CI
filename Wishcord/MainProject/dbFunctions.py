@@ -88,3 +88,9 @@ def getAllUsers():
         return User.objects.all()
     except:
         return 0
+    
+def clear():
+    for i in Group.objects.all() :
+        i.delete()
+    for i in User.objects.all():
+        i.delete()

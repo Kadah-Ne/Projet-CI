@@ -1,0 +1,15 @@
+{%extends "_base_template.html" %}
+{%block titlePage%}
+<title>Creation de compte</title>
+{%endblock%}
+{%block body%}
+<div class="MainDiv">
+</div>
+<form method="POST" enctype="multipart/form-data" style="margin-top: 4%" class="LoginForm">
+    <h1 class="pageTitleLogin" style="padding-bottom: 30px;">PAGE DE CREATION DE COMPTE AROS'AGE</h1>
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Nom d'utilisateur" class="inputLogin" style="margin-top: 25px;">
+    <button type="submit" class="formButton">CREER LE COMPTE</button>
+    <a href="login">Retour a la connexion</a>
+</form>
+{%endblock%}

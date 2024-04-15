@@ -9,4 +9,5 @@ urlpatterns = [
     path("groupeView", views.groupView, name="groupView"),
     path("groupManage", views.groupManage, name="groupManage"),
     path("adminPage", views.adminPage, name="adminPage"),
+    path('createAccount',views.createAccount,name="createAccount")
 ]

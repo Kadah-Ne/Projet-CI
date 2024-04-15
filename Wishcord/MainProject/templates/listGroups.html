@@ -1,0 +1,13 @@
+{%extends "_base_template.html" %}
+{%block titlePage%}
+<title>Messagerie</title>
+{%endblock%}
+{%block body%}
+    {%for group in groups%}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <button type="submit">{{group}}</button>
+            <input type="hidden" name="adz" value="{{group.name}}">
+        </form>
+    {%endfor%}
+{%endblock%}
