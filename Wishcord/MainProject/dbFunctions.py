@@ -38,14 +38,13 @@ def deleteGroup(name):
         return 1
     except:
         return 0
-def getUser(username):
-    return None
-
-def getUsersFromGroup(name):
-    return [None, None, None]
-
-def getAllUsers():
-    return [None, None, None]
+    
+def getGroup():
+    try:
+        return Group.objects.all()
+    except:
+        return 0
+    
 
 def createUser(username):
     try:
@@ -63,3 +62,12 @@ def deleteUser(username):
         return 1
     except:
         return 0
+    
+def getUser(username):
+    return None
+
+def getUsersFromGroup(name):
+    return [None, None, None]
+
+def getAllUsers():
+    return [None, None, None]
