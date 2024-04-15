@@ -1,0 +1,55 @@
+{%extends "_base_template.html" %}
+{%block titlePage%}
+<title>Arosa'je</title>
+{%endblock%}
+{%block body%}
+    <div id="activePart">
+        <div id="selectionGridMain" style="margin-bottom: 150px;">
+            <img id="title" src="../static/images/Logo.png">
+            <h1 class="menu_item_title titleMain">BIENVENUE SUR VOTRE ESPACE AROSAJE</h1>
+        </div>
+        <div id="selectionGrid">
+            {% if not isLogged%}
+            <div class="selectionGridColumn">
+                <h2 class="menu_item_title">SE CONNECTER</h2>
+                <a href="login">
+                    <img  class="menu_item_image" src="https://i.imgur.com/f9jUZJC.jpeg" alt="">
+                </a>
+            </div>
+            
+            {%elif user.imgprofil != ""%}
+            <div class="selectionGridColumn">
+                <h2 class="menu_item_title">MON COMPTE AROS'AJE</h2>
+                <a href="account">
+                    <img  class="menu_item_image" src="{{user.imgprofil}}" alt="">
+                </a>
+            </div>
+            
+            {%else%}
+            <div class="selectionGridColumn">
+                <h2 class="menu_item_title">MON COMPTE AROS'AJE</h2>
+                <a href="account">
+                    <img  class="menu_item_image" src="../static/images/user.png" alt="">
+                </a>
+            </div>
+            {%endif%}
+            
+            {% if isLogged%}
+            <div class="selectionGridColumn">
+                <h2 class="menu_item_title">STACK OVERGROWTH</h2>
+                <a href="StackoverGrowth"><img  class="menu_item_image" src="../static/images/StackoverGrowth.png" alt=""></a>
+            </div>
+            <div class="selectionGridColumn">
+                <h2 class="menu_item_title">FAIRE GARDER UNE PLANTE</h2>
+                <a href="Guard"><img  class="menu_item_image" src="../static/images/LEavePlant.png" alt=""></a>
+            </div>
+            {% if user.estBotaniste%}
+            <div class="selectionGridColumn">
+                <h2 class="menu_item_title">GARDER UNE PLANTE</h2>
+                <a href="GuardingPlants"><img  class="menu_item_image" src="../static/images/GuardPlant.jpg" alt=""></a>
+            </div>
+            {%endif%}
+            {%endif%}
+        </div>
+    </div>
+{%endblock%}
