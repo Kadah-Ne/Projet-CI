@@ -3,11 +3,13 @@
 <title>Messagerie</title>
 {%endblock%}
 {%block body%}
-    {%for group in groups%}
-        <form action="" method="POST">
+    <div class="grpSelector">
+    {%for group,users in groups.items%}
+        <form action="" method="POST" >
             {% csrf_token %}
-            <button type="submit">{{group}}</button>
-            <input type="hidden" name="adz" value="{{group.name}}">
+            <button type="submit">{{group}} ({{users}})</button>
+            <input type="hidden" name="name" value="{{group.name}}">
         </form>
     {%endfor%}
+    </div>
 {%endblock%}

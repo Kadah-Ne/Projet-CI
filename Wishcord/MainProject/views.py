@@ -19,13 +19,12 @@ def groupList(request):
         query = request.POST
         print(query)
         return redirect(login)
-    dbf.clear()
-    dbf.createGroup("Premier Groupe")
-    dbf.createUser("Martin")
-    dbf.addToGroup("Martin","Premier Groupe")
+    dbf.testGroupes()
     groups = dbf.getGroups()
-    
-    return render(request,"listGroups.html",{"groups" : groups})
+    dicoGroupes = {}
+    for i in groups:
+        dicoGroupes[i.name] = dbf.getCountUsersFromGroup(i.name)
+    return render(request,"listGroups.html",{"groups" : dicoGroupes})
 
 def groupView(request):
     pass

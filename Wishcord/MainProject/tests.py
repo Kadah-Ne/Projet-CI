@@ -65,3 +65,8 @@ class DbTestCase(TestCase) :
         dbf.addToGroup(self.usernameWorking,self.groupNameWorking)
         self.assertEqual(dbf.getUsersFromGroup(self.groupNameWorking),[self.userTest],self.workNotNullMess)
         self.assertNotEqual(dbf.getUsersFromGroup(self.groupNameNotWorking),[self.userTest],self.errNotNullMess)
+
+    def testGetCountUsersFromGroup(self):
+        dbf.addToGroup(self.usernameWorking,self.groupNameWorking)
+        self.assertEqual(dbf.getCountUsersFromGroup(self.groupNameWorking),1,self.workNotNullMess)
+        self.assertNotEqual(dbf.getCountUsersFromGroup(self.groupNameNotWorking),1,self.errNotNullMess)

@@ -82,6 +82,12 @@ def getUsersFromGroup(name):
     except:
         return 0
     
+def getCountUsersFromGroup(name) :
+    try:
+        idGrp = getGroup(name).id
+        return list(User.objects.filter(group = idGrp)).__len__()
+    except:
+        return 0
 
 def getAllUsers():
     try:
@@ -94,3 +100,20 @@ def clear():
         i.delete()
     for i in User.objects.all():
         i.delete()
+
+def testGroupes() :
+    clear()
+    createGroup("Premier Groupe")
+    createUser("Martin")
+    createUser("Oscar")
+    createUser("Frank")
+    addToGroup("Martin","Premier Groupe")
+    addToGroup("Oscar","Premier Groupe")
+    addToGroup("Frank","Premier Groupe")
+    createGroup("2eme Groupe")
+    createUser("Tom")
+    createUser("François")
+    
+    addToGroup("Tom","2eme Groupe")
+    addToGroup("François","2eme Groupe")
+    
