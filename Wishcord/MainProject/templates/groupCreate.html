@@ -9,7 +9,13 @@
     <h1 class="pageTitleLogin" style="padding-bottom: 30px;">PAGE DE CREATION DE GROUPES</h1>
     {% csrf_token %}
     <input type="text" name="grpName" placeholder="Nom du groupe" class="inputGroup" style="margin-top: 25px;">
+    <select name = "newGuys" multiple>
+    {%for user in users%}
+        <option value="{{user.username}}" >{{user.username}}</option>
+    {%endfor%}
+    </select>
     <button type="submit" class="formButton">CREER LE GROUPE</button>
     <a href="groupList">Retour aux groupes</a>
 </form>
+
 {%endblock%}

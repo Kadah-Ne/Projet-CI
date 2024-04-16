@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'MainProject.apps.MainprojectConfig',
-    'django_jenkins',
 ]
 
 MIDDLEWARE = [

@@ -9,8 +9,6 @@ def login(request):
     if request.method == 'POST':
         query = request.POST
         if dbf.getUser(query["username"]):
-
-        
             request.session["user"] = query['username']
             return redirect(groupList)
     return render(request,"login.html")
@@ -59,6 +57,7 @@ def groupCreate(request):
         dbf.createGroup(query['grpName'])
         dbf.addToGroup(request.session["user"],query["grpName"])
         return redirect(groupList)
-    return render(request,"groupCreate.html")
+    listUsers = dbf.getAllUsers()
+    return render(request,"groupCreate.html",{"users" : listUsers})
 def adminPage(request):
     pass
