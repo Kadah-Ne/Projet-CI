@@ -94,6 +94,12 @@ def getAllUsers():
         return User.objects.all()
     except:
         return 0
+
+def getGrouplesUsers():
+    try:
+        return User.objects.filter(group = None)
+    except:
+        return 0
     
 def clear():
     for i in Group.objects.all() :

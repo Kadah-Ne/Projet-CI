@@ -41,6 +41,7 @@ def groupList(request):
     return render(request,"listGroups.html",{"groups" : dicoGroupes})
 
 def groupManage(request):
+    print(request.session["tmp_data"])
     if request.session["tmp_data"]:
         listUsers = dbf.getUsersFromGroup(request.session["tmp_data"])
         if request.method == "POST":
@@ -54,10 +55,17 @@ def groupManage(request):
 def groupCreate(request):
     if request.method == "POST":
         query = request.POST
+        print(query)
         dbf.createGroup(query['grpName'])
         dbf.addToGroup(request.session["user"],query["grpName"])
+        dbf.addToGroup(query["newGuys"],query["grpName"])
         return redirect(groupList)
-    listUsers = dbf.getAllUsers()
-    return render(request,"groupCreate.html",{"users" : listUsers})
+    listUsers = dbf.getGrouplesUsers()
+    listeUser2 = []
+    for i in listUsers:
+        if i.username != request.session["user"]:
+            listeUser2.append(i)
+            
+    return render(request,"groupCreate.html",{"users" : listeUser2})
 def adminPage(request):
     pass
