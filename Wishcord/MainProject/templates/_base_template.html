@@ -9,13 +9,15 @@
     {% endblock %}
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index">Accueil</a></li>
-            <li><a href="login">Login</a></li>
-            <li><a href="createAccount">creer un compte</a></li>
-        </ul>
-    </nav>
+    <div class="topBarDiv">
+        <nav class="topBar">
+            <ul>
+                <li><a href="index" class="topBar a">Accueil</a></li>
+                <li><a href="login" class="topBar a">Login</a></li>
+                <li><a href="createAccount" class="topBar a">creer un compte</a></li>
+            </ul>
+        </nav>
+    </div>
     {%block body%}
     {%endblock%}
 </body>
