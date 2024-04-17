@@ -8,8 +8,14 @@
         <form action="" method="POST" >
             {% csrf_token %}
             <button type="submit">{{group}} ({{users}})</button>
-            <input type="hidden" name="name" value="{{group.name}}">
+            <input type="hidden" name="name" value="{{group}}">
         </form>
     {%endfor%}
+    <form action="" method="POST" >
+        {% csrf_token %}
+        <button type="submit">Créer un groupe</button>
+        <input type="hidden" name="creation" value="true">
+    </form>
     </div>
+    
 {%endblock%}
