@@ -1,3 +1,2 @@
-**REQUIREMENTS**1
-
+**REQUIREMENTS**12
 ### Django Base
