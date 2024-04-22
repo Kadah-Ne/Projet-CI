@@ -6,7 +6,7 @@ def addToGroup(user,group) :
     try:
         groupeTest = Group.objects.filter(name = group).first()
         userTest = User.objects.filter(username = user).first()
-        userTest.group = groupeTest+2
+        userTest.group = groupeTest
         userTest.save()
         return 1
     except :
@@ -34,6 +34,10 @@ def createGroup(name):
 def deleteGroup(name):
     try:
         groupe=Group.objects.filter(name=name)
+        
+        for i in getUsersFromGroup(name) :
+            i.group = None
+            i.save()
         groupe.delete()
         return 1
     except:
