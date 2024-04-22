@@ -2,7 +2,21 @@ from django.shortcuts import render,redirect,reverse
 import MainProject.dbFunctions as dbf
 from django.http import HttpResponse
 
+minUsers = 3
+
+def maxUsers():
+    nbGroups = dbf.getGroups().count()
+    nbUsers = dbf.getAllUsers().count()
+    print(nbUsers,nbGroups)
+    if nbGroups > 0 and nbUsers >0:
+        nbUserPerGroup = nbUsers//nbGroups
+        if nbUsers%nbGroups < 2 :
+            return nbUserPerGroup +1 
+        else :
+            return nbUserPerGroup
+
 def index(request):
+    dbf.clear()
     return render(request, "index.html")
 
 def login(request):
@@ -20,6 +34,7 @@ def createAccount(request):
         print(query)
         dbf.createUser(query['username'])
         request.session["user"] = query['username']
+        maxUsers()
         return redirect(groupList)
     return render(request,"createAccount.html")
     
@@ -33,7 +48,6 @@ def groupList(request):
             return redirect(groupManage)
         elif "creation" in query :
             return redirect(groupCreate)
-    # dbf.testGroupes()
     groups = dbf.getGroups()
     dicoGroupes = {}
     for i in groups:
@@ -48,19 +62,23 @@ def groupManage(request):
             if "user" in query:
                 print(query['user'],request.session["tmp_data"])
                 dbf.removeFromGroup(query['user'],request.session["tmp_data"])
+                if dbf.getCountUsersFromGroup(request.session["tmp_data"]) < 2 :
+                    dbf.deleteGroup(request.session["tmp_data"])
+                    return redirect(groupList)
             elif not dbf.isUserInGroup(request.session["user"],request.session["tmp_data"]):
-                dbf.addToGroup(request.session["user"],request.session["tmp_data"])
+                if dbf.getCountUsersFromGroup(request.session["tmp_data"]) < maxUsers() :
+                    dbf.addToGroup(request.session["user"],request.session["tmp_data"])
             return redirect(reverse(groupManage))
     return render(request,"groupManage.html",{'groupUsers':listUsers})
     
 def groupCreate(request):
     if request.method == "POST":
         query = request.POST
-        print(query)
-        dbf.createGroup(query['grpName'])
-        dbf.addToGroup(request.session["user"],query["grpName"])
-        dbf.addToGroup(query["newGuys"],query["grpName"])
-        return redirect(groupList)
+        if maxUsers > minUsers :
+            dbf.createGroup(query['grpName'])
+            dbf.addToGroup(request.session["user"],query["grpName"])
+            dbf.addToGroup(query["newGuys"],query["grpName"])
+            return redirect(groupList)
     listUsers = dbf.getGrouplesUsers()
     listeUser2 = []
     for i in listUsers:
