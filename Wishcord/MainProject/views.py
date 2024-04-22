@@ -22,7 +22,7 @@ def createAccount(request):
         request.session["user"] = query['username']
         return redirect(groupList)
     return render(request,"createAccount.html")
-    pass
+    
 
 def groupList(request):
     if request.method=="POST":
