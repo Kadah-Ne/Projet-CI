@@ -6,7 +6,7 @@ def addToGroup(user,group) :
     try:
         groupeTest = Group.objects.filter(name = group).first()
         userTest = User.objects.filter(username = user).first()
-        userTest.group = groupeTest
+        userTest.group = groupeTest +1 
         userTest.save()
         return 1
     except :
@@ -98,6 +98,17 @@ def getAllUsers():
 def getGrouplesUsers():
     try:
         return User.objects.filter(group = None)
+    except:
+        return 0
+    
+def isUserInGroup(user,group):
+    try:
+        flag = False
+        listUsers = getUsersFromGroup(group)
+        for i in listUsers :
+            if i.username == user:
+                flag = True
+        return flag
     except:
         return 0
     

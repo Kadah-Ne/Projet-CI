@@ -13,7 +13,8 @@
         </form>
     {%endfor%}
     <form action="" method="POST">
-        
+        {%csrf_token%}
+        <button type="submit">Rejoindre le groupe</button>
     </form>
     </div>
 {%endblock%}

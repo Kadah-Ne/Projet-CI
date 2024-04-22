@@ -41,14 +41,15 @@ def groupList(request):
     return render(request,"listGroups.html",{"groups" : dicoGroupes})
 
 def groupManage(request):
-    print(request.session["tmp_data"])
     if request.session["tmp_data"]:
         listUsers = dbf.getUsersFromGroup(request.session["tmp_data"])
         if request.method == "POST":
             query = request.POST
-            # user = dbf.getUser(query['user'])
-            
-            dbf.removeFromGroup(query['user'],request.session["tmp_data"])
+            if "user" in query:
+                print(query['user'],request.session["tmp_data"])
+                dbf.removeFromGroup(query['user'],request.session["tmp_data"])
+            elif not dbf.isUserInGroup(request.session["user"],request.session["tmp_data"]):
+                dbf.addToGroup(request.session["user"],request.session["tmp_data"])
             return redirect(reverse(groupManage))
     return render(request,"groupManage.html",{'groupUsers':listUsers})
     
