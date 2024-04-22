@@ -48,6 +48,9 @@ def groupManage(request):
             if "user" in query:
                 print(query['user'],request.session["tmp_data"])
                 dbf.removeFromGroup(query['user'],request.session["tmp_data"])
+                if dbf.getCountUsersFromGroup(request.session["tmp_data"]) < 2 :
+                    dbf.deleteGroup(request.session["tmp_data"])
+                    return redirect(groupList)
             elif not dbf.isUserInGroup(request.session["user"],request.session["tmp_data"]):
                 dbf.addToGroup(request.session["user"],request.session["tmp_data"])
             return redirect(reverse(groupManage))

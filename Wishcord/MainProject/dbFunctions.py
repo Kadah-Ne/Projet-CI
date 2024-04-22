@@ -6,7 +6,7 @@ def addToGroup(user,group) :
     try:
         groupeTest = Group.objects.filter(name = group).first()
         userTest = User.objects.filter(username = user).first()
-        userTest.group = groupeTest +1 
+        userTest.group = groupeTest+2
         userTest.save()
         return 1
     except :
