@@ -61,6 +61,7 @@ def groupList(request):
             dicoGroupes[i.name] = dbf.getCountUsersFromGroup(i.name)
         for user in usersNoGrp:
             listeUser.append(user.username)
+        print(listeUser)
         return render(request,"listGroups.html",{"groups" : dicoGroupes,"listUser":listeUser})
     else :
         return redirect(login)

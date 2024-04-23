@@ -488,3 +488,29 @@ h1
     display: flex;
     column-gap: 10px;
 }
+.listGrpLess
+{
+    height: 25%;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.295);
+    overflow-x: hidden;
+    align-content: start;
+    justify-items: stretch;
+    align-items: center;
+    font-weight: bolder;
+}
+
+.divlistGrpLess
+{
+    display: flex;
+    flex-direction: column;
+    align-content: start;
+    justify-items: stretch;
+    align-items: center;
+    font-weight: bolder;
+}
