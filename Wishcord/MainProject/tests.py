@@ -1,6 +1,8 @@
 from django.test import TestCase
 from MainProject.models import User, Group
 import MainProject.dbFunctions as dbf
+from MainProject.views import *
+from django.shortcuts import render,redirect,reverse
 
 
 class DbTestCase(TestCase) :
@@ -72,7 +74,7 @@ class DbTestCase(TestCase) :
         self.assertNotEqual(dbf.getCountUsersFromGroup(self.groupNameNotWorking),1,self.errNotNullMess)
 
     def test_groupList_not_authenticated_user(self):
-            url = reverse('Wishcord:listGroups')
+            url = reverse(groupList)
             response = self.client.get(url)
-            self.assertTemplateNotUsed(response, 'Wishcord/listGroups.html')
+            self.assertTemplateNotUsed(response, 'MainProject/listGroups.html')
             self.failUnlessEqual(response.status_code, 302)
