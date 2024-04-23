@@ -41,22 +41,29 @@ def createAccount(request):
     
 
 def groupList(request):
-    if request.method=="POST":
-        query = request.POST
-        print(query)
-        if "name" in query:
-            request.session["tmp_data"] = query['name']
-            return redirect(groupManage)
-        elif "creation" in query :
-            return redirect(groupCreate)
-        else :
-            listGroups = dbf.getGroups()
-            dbf.addToGroup(request.session["user"],rand.choice(listGroups).name)
-    groups = dbf.getGroups()
-    dicoGroupes = {}
-    for i in groups:
-        dicoGroupes[i.name] = dbf.getCountUsersFromGroup(i.name)
-    return render(request,"listGroups.html",{"groups" : dicoGroupes})
+    if "user" in request.session:
+        if request.method=="POST":
+            query = request.POST
+            print(query)
+            if "name" in query:
+                request.session["tmp_data"] = query['name']
+                return redirect(groupManage)
+            elif "creation" in query :
+                return redirect(groupCreate)
+            else :
+                listGroups = dbf.getGroups()
+                dbf.addToGroup(request.session["user"],rand.choice(listGroups).name)
+        groups = dbf.getGroups()
+        usersNoGrp = dbf.getGrouplesUsers()
+        dicoGroupes = {}
+        listeUser = []
+        for i in groups:
+            dicoGroupes[i.name] = dbf.getCountUsersFromGroup(i.name)
+        for user in usersNoGrp:
+            listeUser.append(user.username)
+        return render(request,"listGroups.html",{"groups" : dicoGroupes,"listUser":listeUser})
+    else :
+        return redirect(login)
 
 def groupManage(request):
     if request.session["tmp_data"]:
@@ -91,5 +98,20 @@ def groupCreate(request):
             listeUser2.append(i)
             
     return render(request,"groupCreate.html",{"users" : listeUser2})
+
 def adminPage(request):
-    pass
+    allUsers = dbf.getAllUsers()
+    allGroups = dbf.getGroups()
+    NbUsers = allUsers.count()
+    NbGroups = allGroups.count()
+    listUsers = []
+    listGroups = []
+    maxU=0
+    for user in allUsers:
+        listUsers.append(user.username)
+    for group in allGroups:
+        count = dbf.getCountUsersFromGroup(group.name)
+        listGroups.append((group.name,count))
+        maxU = max(maxU,count)
+    return render(request,"adminPage.html",{"NbUsers":NbUsers,"listUsers" : listUsers,"NbGroups":NbGroups,"listGroups" : listGroups,"max":maxU})
+    

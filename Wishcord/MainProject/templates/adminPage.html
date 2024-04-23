@@ -1,0 +1,36 @@
+{%extends "_base_template.html" %}
+{%block titlePage%}
+<title>Creation de compte</title>
+{%endblock%}
+{%block body%}
+
+<div class="gridAdmin">
+    <div class="UserBlock">
+        Nb Users
+        <div class="Number">
+            {{NbUsers}}
+        </div>
+        <div class="ItemList">
+            {% for user in listUsers %}
+                <p>{{user}}</p>
+            {%endfor%}
+        </div>
+    </div>
+    <div class="GroupBlock">
+        Nb Groups
+        <div class="Number">
+            {{NbGroups}}
+        </div>
+        <div class="ItemList">
+            {% for group in listGroups %}
+                <p>{{group.0}} ({{group.1}})</p>
+            {%endfor%}
+        </div>
+    </div>
+    <div class="MaxGroup">
+        Max Group
+        <div class="Number">{{max}}</div>
+        <!-- <div class="ItemList">List</div> -->
+    </div>
+</div>
+{%endblock%}
