@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,reverse
 import MainProject.dbFunctions as dbf
 from django.http import HttpResponse
+import random as rand
 
 minUsers = 3
 
@@ -48,6 +49,9 @@ def groupList(request):
             return redirect(groupManage)
         elif "creation" in query :
             return redirect(groupCreate)
+        else :
+            listGroups = dbf.getGroups()
+            dbf.addToGroup(request.session["user"],rand.choice(listGroups).name)
     groups = dbf.getGroups()
     dicoGroupes = {}
     for i in groups:
@@ -74,7 +78,8 @@ def groupManage(request):
 def groupCreate(request):
     if request.method == "POST":
         query = request.POST
-        if maxUsers > minUsers :
+        if (maxUsers() == None or maxUsers()>minUsers) and (query['grpName'] != "" and query['grpName'] != None):
+            print("a")
             dbf.createGroup(query['grpName'])
             dbf.addToGroup(request.session["user"],query["grpName"])
             dbf.addToGroup(query["newGuys"],query["grpName"])

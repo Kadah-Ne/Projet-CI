@@ -16,6 +16,10 @@
         <button type="submit">Créer un groupe</button>
         <input type="hidden" name="creation" value="true">
     </form>
+    <form action="" method="POST">
+        {%csrf_token%}
+        <button type="submit">Rejoindre un groupe aléatoire</button>
+    </form>
     </div>
     
 {%endblock%}
