@@ -1,0 +1,176 @@
+body
+{
+    width: 100vw;
+    height: 100vw;
+    background-image: url("../images/BackGround.png");
+    overflow-x: hidden;
+}
+#mainDiv
+{
+    display: grid;
+    padding-top: 0px;
+    padding-left: 0px;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    background-color: rgba(0, 0, 0, 0.589);
+    width: 100%;
+    height: 100vh;
+}
+
+
+#user 
+{ 
+    grid-area: 1 / 1 / 2 / 2; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: red;
+}
+#user img
+{
+    width: 15vw;
+}
+
+#plants 
+{ 
+    grid-area: 1 / 2 / 2 / 3; 
+    padding-left: 15%;
+    padding-right: 15%;
+    background-color: green;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+    scroll-snap-type: x mandatory;
+    column-gap: 50%;
+    
+
+}
+
+.plantItem
+{
+    display: flex;
+    margin: 10px 10px 10px 10px;
+    scroll-snap-align: center;
+    padding: 10px 10px 10px 10px;
+    width: 90%;
+    text-align: left;
+    justify-content: center;
+    position: relative;
+    background-color: wheat;
+    flex-wrap: nowrap;
+    column-gap: 10px;
+    align-items:center;
+    
+}
+
+.plantText
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-style: groove;
+    width: 100%;
+    height: fit-content;
+}
+.plantItem img
+{
+    
+    height: 90%;
+}
+
+#agenda 
+{ 
+    grid-area: 2 / 1 / 3 / 2; 
+    background-color: blue;
+}
+
+#calendar
+{
+    background-color: rgb(25, 188, 25);
+}
+
+#toFill 
+{ 
+    grid-area: 2 / 2 / 3 / 3; 
+    background-color: yellow;
+} 
+.back_button{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+}
+.header{
+    
+    background-color: rgba(0, 255, 255, 0.432);
+    width: 10%;
+    margin-bottom: 5px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+}
+.exit_button{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: 4px solid #20C900;
+    border-radius: 200px;
+    overflow: hidden;
+}
+.selectionGridRow{
+    width: 100%;
+    height: 250px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #ffffff85;
+    border: 4px solid #20C900;
+    border-radius: 25px;
+    padding-top: 25px;
+}
+.selectionGridColumn{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    
+}
+.profile_image{
+    border: 4px solid #20C900;
+    border-radius: 200px;
+    width: 200px;
+    height: 200px;
+}
+.UsernameTitle{
+    margin-top: 100px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.UsernameTitle hr{
+    height: 5px;
+    width: auto;
+    background-color: #cccccc;
+}
+.logOutButton{
+    display: block;
+    width: 250px;
+    height: 25px;
+    background-color: rgb(201, 59, 59);
+    border: 4px solid #8a0303;
+    color: aliceblue;
+    text-shadow: 1px 1px 0 #727272;
+    border-radius: 12px;
+    text-align: center;
+    transition: 0.5s;
+    margin-top: -25px;
+    transform: translateX(50%);
+
+}
+.logOutButton:hover{
+    background-color: rgb(228, 26, 26);
+    cursor: pointer;
+}

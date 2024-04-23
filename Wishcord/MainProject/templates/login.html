@@ -1,0 +1,16 @@
+{%extends "_base_template.html" %}
+{%block titlePage%}
+<title>Login</title>
+{%endblock%}
+
+{%block body%}
+<form method="POST" action="" style="margin-top: 10%" class="LoginForm">
+    <h1 class="pageTitleLogin">CONNEXION A WISHCORD</h1>
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Nom d'utilisateur" class="inputLogin" style="margin-top: 25px;">
+    <button type="submit" class="formButton">CONNEXION</button>
+    <a href="createAccount">Creer un compte</a>
+    
+</form>
+
+{%endblock%}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/base.css">
+    {% block titlePage %}
+    {% endblock %}
+</head>
+<body>
+    <nav class="topBar">
+        <ul class="topBarUl">
+            <li class="topBarLi"><a href="/" class="topBarA">Accueil</a></li>
+            <li class="topBarLi"><a href="login" class="topBarA">Login</a></li>
+            <li class="topBarLi"><a href="createAccount" class="topBarA">creer un compte</a></li>
+        </ul>
+    </nav>
+    {%block body%}
+    {%endblock%}
+</body>

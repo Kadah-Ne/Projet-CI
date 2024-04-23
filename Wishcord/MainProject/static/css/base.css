@@ -1,0 +1,386 @@
+body
+{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url("../images/BackGround.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+h1
+{
+    color: lime;
+}
+
+#selectionGrid img
+{
+    width: 15vw;
+}
+
+#activePart
+{
+    
+    top:0;
+    background-color: rgba(0, 0, 0, 0.589);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+}
+
+#selectionGrid
+{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    width : 75%;
+}
+#selectionGridMain{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    width : 75%;
+    height: 150px;
+    /* border: 8px solid;
+    border-image: linear-gradient(to right, #0CCE00 0%, #036100 50%, #27C500 100%) 1;
+    border-radius: 40px; */
+    background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 19px, transparent 19px) 0% 0%/30px 30px no-repeat,
+            radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 19px, transparent 19px) 100% 0%/30px 30px no-repeat,
+            radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 19px, transparent 19px) 0% 100%/30px 30px no-repeat,
+            radial-gradient(circle at 0 0, #ffffff 0, #ffffff 19px, transparent 19px) 100% 100%/30px 30px no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 22px) calc(100% - 60px) no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 60px) calc(100% - 22px) no-repeat,
+            linear-gradient(27deg, #5f70be 0%, #5f70be 2.913%, #c101cb 76.094%, transparent 100%),
+            radial-gradient(at 7% 60%, #5f70be 0%, #d900e1 45.122%, #254cf8 47.609%, #4d02b0 81.7%, #04f2ff 100%) 51% 92%/122% 165%;
+    border-radius: 30px;
+    padding: 18px;
+    box-sizing: content-box;
+}
+.menu_item_title.titleMain{
+    padding-top: 2vh;
+    color: #5f70be;
+    text-shadow: 1px 1px 0 #b3b3b3;
+    font-weight: bolder;
+    font-size: 50px;
+}
+.selectionGridColumn{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    
+}
+.menu_item_title{
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    text-shadow: 4px 3px 0 #7A7A7A;
+}
+#title{
+    height: 150px;
+    width: auto;
+}
+#selectionGrid img
+{
+    max-height: 250px;
+    max-width: 250px;
+    min-height: 250px;
+    min-width: 250px;
+}
+
+#Login
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.topBar
+{
+    width: 100%;
+    left: 0;
+    top:0;
+    height: 10vh; 
+    color: aliceblue; 
+    justify-content: left;
+    align-items: center;
+}
+
+.topBarUl
+{
+   text-align: center;
+   display: flex;
+   flex-direction: row;
+   column-gap: 1em;
+   list-style: none;
+   align-items: center;
+   margin-top: 30px;
+}
+
+.topBarLi
+{
+   text-align: center;
+   
+}
+.topBarA
+{
+   text-align: center;
+   display: block;
+   text-decoration: none;
+   
+}
+#StackPost
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+}
+
+#StackPost form
+{
+    width: 90%;
+    height: 10vh;
+}
+
+#StackPost button
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    column-gap: 39%;
+}
+
+#StackPost img
+{
+    height: 9vh;
+}
+
+#PostTitle
+{
+    text-decoration: underline;
+}
+
+#postPageText
+{
+    background-color: aliceblue;
+    border-radius: 5px;
+    border-style: groove;
+    padding: 5px 5px 5px 5px;
+    border-color: black;
+    width: max-content;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: center;
+    font-weight: bolder;
+    font-family: fantasy;
+}
+
+#postPageCommentsZone
+{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+}
+
+#postPageComments
+{
+    background-color: gainsboro;
+    border-radius: 5px;
+    border-style: groove;
+    border-color: black;
+    padding: 5px 5px 5px 5px;
+}
+
+#postPageTitle
+{
+    text-decoration: underline;
+    color: black;
+}
+
+#postPagePlante
+{
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 5px;
+    padding-bottom: 10px;
+}
+.menu_item_image{
+    border: 8px double #5f70be;
+    border-radius: 40px;
+}
+
+
+
+.inputLogin{
+    border: 4px solid #5f70be;
+    border-radius: 20px;
+    width: 250px;
+    height: 40px;
+    margin-bottom: 15px;
+    /* padding: 25px 20px 25px 20px; */
+}
+
+.pageTitleLogin{
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: rgb(0, 0, 0);
+    text-shadow: 1px 1px 0 #b3b3b3;
+    text-align: center;
+}
+.LoginForm{
+    display: flex;
+    width: 600px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.401);
+    border: 4px solid #5f70be;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 50px 50px 50px 50px;
+    z-index: 25;
+}
+.LoginForm a{
+    color : black;
+}
+
+
+.formButton{
+    border: 4px solid #5f70be;
+    border-radius: 12px;
+    width: 250px;
+    height: 40px;
+    margin-bottom: 15px;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+    background-color: grey;
+  }
+.inputfile::file-selector-button {
+    border: 2px solid #076b29;
+    padding: .2em .4em;
+    border-radius: .2em;
+    background-color: #2b6429;
+    transition: 0.5s;
+    color: white;
+  }
+  
+.inputfile::file-selector-button:hover {
+    background-color: #0bee44;
+    border: 2px solid #1b6d07;
+    color: black;
+  }
+.inputLoginCheck{
+    margin-top:15px;
+    margin-bottom:15px;
+
+  }
+
+  .exit_button{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: 4px solid #20C900;
+    border-radius: 200px;
+    overflow: hidden;
+}
+
+.messagerie
+{
+    background-color: rgba(97, 97, 97, 0.5);
+    overflow-y: scroll;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.textBox
+{
+    height: 20vh;
+    padding-top: 1vh;
+    
+}
+
+#messageOwner
+{
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    width: fit-content;
+    max-width: 65%;
+    
+    align-self: flex-end;
+    background-color: rgb(56, 72, 110);
+}
+
+#messageOther
+{
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    width: fit-content;
+    max-width: 65%;
+
+    align-self: flex-start;
+    background-color: grey;
+}
+
+.owner
+{
+    font-weight: bolder;
+}
+
+.date
+{
+    font-style: italic;
+}
+
+.grpSelector
+{
+    height: 93.5vh;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-color: #04f2ff;
+    border-style: groove;
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    align-items: center;
+    
+
+}
+
+.grpSelector button
+{
+    width: 50vw;
+    height: 10vh;
+    background-color: #5f70beb6;
+    border-radius: 5px;
+    border-color: black;
+}

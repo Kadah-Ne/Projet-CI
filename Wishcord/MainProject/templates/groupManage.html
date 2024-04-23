@@ -1,0 +1,20 @@
+{%extends "_base_template.html" %}
+{%block titlePage%}
+<title>Messagerie</title>
+{%endblock%}
+{%block body%}
+    <div class="grpSelector">
+    {%for user in groupUsers%}
+        
+        <form action="" method="POST" >
+            {% csrf_token %}
+            <button type="submit">{{user.username}}</button>
+            <input type="hidden" name="user" value="{{user.username}}">
+        </form>
+    {%endfor%}
+    <form action="" method="POST">
+        {%csrf_token%}
+        <button type="submit">Rejoindre le groupe</button>
+    </form>
+    </div>
+{%endblock%}

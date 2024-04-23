@@ -1,0 +1,25 @@
+{%extends "_base_template.html" %}
+{%block titlePage%}
+<title>Messagerie</title>
+{%endblock%}
+{%block body%}
+    <div class="grpSelector">
+    {%for group,users in groups.items%}
+        <form action="" method="POST" >
+            {% csrf_token %}
+            <button type="submit">{{group}} ({{users}})</button>
+            <input type="hidden" name="name" value="{{group}}">
+        </form>
+    {%endfor%}
+    <form action="" method="POST" >
+        {% csrf_token %}
+        <button type="submit">Créer un groupe</button>
+        <input type="hidden" name="creation" value="true">
+    </form>
+    <form action="" method="POST">
+        {%csrf_token%}
+        <button type="submit">Rejoindre un groupe aléatoire</button>
+    </form>
+    </div>
+    
+{%endblock%}
