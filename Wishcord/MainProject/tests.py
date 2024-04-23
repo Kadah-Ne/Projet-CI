@@ -70,3 +70,9 @@ class DbTestCase(TestCase) :
         dbf.addToGroup(self.usernameWorking,self.groupNameWorking)
         self.assertEqual(dbf.getCountUsersFromGroup(self.groupNameWorking),1,self.workNotNullMess)
         self.assertNotEqual(dbf.getCountUsersFromGroup(self.groupNameNotWorking),1,self.errNotNullMess)
+
+    def test_groupList_not_authenticated_user(self):
+            url = reverse('Wishcord:listGroups')
+            response = self.client.get(url)
+            self.assertTemplateNotUsed(response, 'Wishcord/listGroups.html')
+            self.failUnlessEqual(response.status_code, 302)

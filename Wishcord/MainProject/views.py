@@ -41,22 +41,25 @@ def createAccount(request):
     
 
 def groupList(request):
-    if request.method=="POST":
-        query = request.POST
-        print(query)
-        if "name" in query:
-            request.session["tmp_data"] = query['name']
-            return redirect(groupManage)
-        elif "creation" in query :
-            return redirect(groupCreate)
-        else :
-            listGroups = dbf.getGroups()
-            dbf.addToGroup(request.session["user"],rand.choice(listGroups).name)
-    groups = dbf.getGroups()
-    dicoGroupes = {}
-    for i in groups:
-        dicoGroupes[i.name] = dbf.getCountUsersFromGroup(i.name)
-    return render(request,"listGroups.html",{"groups" : dicoGroupes})
+    if "user" in request.session:
+        if request.method=="POST":
+            query = request.POST
+            print(query)
+            if "name" in query:
+                request.session["tmp_data"] = query['name']
+                return redirect(groupManage)
+            elif "creation" in query :
+                return redirect(groupCreate)
+            else :
+                listGroups = dbf.getGroups()
+                dbf.addToGroup(request.session["user"],rand.choice(listGroups).name)
+        groups = dbf.getGroups()
+        dicoGroupes = {}
+        for i in groups:
+            dicoGroupes[i.name] = dbf.getCountUsersFromGroup(i.name)
+        return render(request,"listGroups.html",{"groups" : dicoGroupes})
+    else :
+        return redirect(login)
 
 def groupManage(request):
     if request.session["tmp_data"]:
