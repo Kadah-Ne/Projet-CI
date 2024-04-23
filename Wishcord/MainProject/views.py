@@ -50,7 +50,7 @@ def groupList(request):
                 return redirect(groupManage)
             elif "creation" in query :
                 return redirect(groupCreate)
-            else :
+            elif dbf.getGroups().count() > 1 :
                 listGroups = dbf.getGroups()
                 dbf.addToGroup(request.session["user"],rand.choice(listGroups).name)
         groups = dbf.getGroups()
@@ -86,12 +86,13 @@ def groupManage(request):
 def groupCreate(request):
     if request.method == "POST":
         query = request.POST
-        if (maxUsers() == None or maxUsers()>minUsers) and (query['grpName'] != "" and query['grpName'] != None):
-            print("a")
-            dbf.createGroup(query['grpName'])
-            dbf.addToGroup(request.session["user"],query["grpName"])
-            dbf.addToGroup(query["newGuys"],query["grpName"])
-            return redirect(groupList)
+        if "newGuys" in query :
+            if (maxUsers() == None or maxUsers()>minUsers) and (query['grpName'] != "" and query['grpName'] != None):
+                print("a")
+                dbf.createGroup(query['grpName'])
+                dbf.addToGroup(request.session["user"],query["grpName"])
+                dbf.addToGroup(query["newGuys"],query["grpName"])
+                return redirect(groupList)
     listUsers = dbf.getGrouplesUsers()
     listeUser2 = []
     for i in listUsers:

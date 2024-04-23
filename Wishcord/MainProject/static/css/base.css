@@ -490,6 +490,8 @@ h1
 }
 .listGrpLess
 {
+    padding-left: 5px;
+    padding-right: 5px;
     height: 25%;
     width: fit-content;
     display: flex;
