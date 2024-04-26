@@ -88,6 +88,5 @@ class DbTestCase(TestCase) :
         dbf.createGroup("2eme Groupe")
         dbf.createUser("Tom")
         dbf.createUser("François")
-        
         dbf.addToGroup("Tom","2eme Groupe")
         dbf.addToGroup("François","2eme Groupe")
