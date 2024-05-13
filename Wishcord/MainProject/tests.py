@@ -1,6 +1,8 @@
 from django.test import TestCase
 from MainProject.models import User, Group
 import MainProject.dbFunctions as dbf
+from MainProject.views import *
+from django.shortcuts import render,redirect,reverse
 
 
 class DbTestCase(TestCase) :
@@ -19,6 +21,7 @@ class DbTestCase(TestCase) :
 
         self.workNotNullMess = "Should not be 0"
         self.errNotNullMess = "Should be 0"
+
     def testCreateGroupWorking(self) :
         self.assertTrue(dbf.createGroup(self.groupNameWorking),self.workNbMess)
         self.assertTrue(dbf.deleteUser(self.groupNameWorking),self.workNbMess)
@@ -58,9 +61,11 @@ class DbTestCase(TestCase) :
     def testGetUser(self):
         self.assertEqual(dbf.getUser(self.usernameWorking),self.userTest,self.workNotNullMess)
         self.assertNotEqual(dbf.getUser(self.usernameNotWorking),self.userTest,self.errNotNullMess)
+
     def testGetGroup(self) :
         self.assertEqual(dbf.getGroup(self.groupNameWorking),self.groupTest,self.workNotNullMess)
         self.assertEqual(dbf.getGroup(self.groupNameNotWorking),None,self.errNotNullMess)
+
     def testGetUsersFromGroup(self):
         dbf.addToGroup(self.usernameWorking,self.groupNameWorking)
         self.assertEqual(dbf.getUsersFromGroup(self.groupNameWorking),[self.userTest],self.workNotNullMess)
@@ -70,3 +75,18 @@ class DbTestCase(TestCase) :
         dbf.addToGroup(self.usernameWorking,self.groupNameWorking)
         self.assertEqual(dbf.getCountUsersFromGroup(self.groupNameWorking),1,self.workNotNullMess)
         self.assertNotEqual(dbf.getCountUsersFromGroup(self.groupNameNotWorking),1,self.errNotNullMess)
+    
+    def testGroupes(self) :
+        dbf.clear()
+        dbf.createGroup("Premier Groupe")
+        dbf.createUser("Martin")
+        dbf.createUser("Oscar")
+        dbf.createUser("Frank")
+        dbf.addToGroup("Martin","Premier Groupe")
+        dbf.addToGroup("Oscar","Premier Groupe")
+        dbf.addToGroup("Frank","Premier Groupe")
+        dbf.createGroup("2eme Groupe")
+        dbf.createUser("Tom")
+        dbf.createUser("François")
+        dbf.addToGroup("Tom","2eme Groupe")
+        dbf.addToGroup("François","2eme Groupe")

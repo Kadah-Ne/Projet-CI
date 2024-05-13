@@ -50,19 +50,14 @@ def groupList(request):
                 return redirect(groupManage)
             elif "creation" in query :
                 return redirect(groupCreate)
-            elif dbf.getGroups().count() > 1 :
+            else :
                 listGroups = dbf.getGroups()
                 dbf.addToGroup(request.session["user"],rand.choice(listGroups).name)
         groups = dbf.getGroups()
-        usersNoGrp = dbf.getGrouplesUsers()
         dicoGroupes = {}
-        listeUser = []
         for i in groups:
             dicoGroupes[i.name] = dbf.getCountUsersFromGroup(i.name)
-        for user in usersNoGrp:
-            listeUser.append(user.username)
-        print(listeUser)
-        return render(request,"listGroups.html",{"groups" : dicoGroupes,"listUser":listeUser})
+        return render(request,"listGroups.html",{"groups" : dicoGroupes})
     else :
         return redirect(login)
 

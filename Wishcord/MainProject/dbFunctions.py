@@ -122,19 +122,5 @@ def clear():
     for i in User.objects.all():
         i.delete()
 
-def testGroupes() :
-    clear()
-    createGroup("Premier Groupe")
-    createUser("Martin")
-    createUser("Oscar")
-    createUser("Frank")
-    addToGroup("Martin","Premier Groupe")
-    addToGroup("Oscar","Premier Groupe")
-    addToGroup("Frank","Premier Groupe")
-    createGroup("2eme Groupe")
-    createUser("Tom")
-    createUser("François")
-    
-    addToGroup("Tom","2eme Groupe")
-    addToGroup("François","2eme Groupe")
+
     
