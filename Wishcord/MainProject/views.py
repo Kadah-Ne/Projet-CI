@@ -81,12 +81,13 @@ def groupManage(request):
 def groupCreate(request):
     if request.method == "POST":
         query = request.POST
-        if (maxUsers() == None or maxUsers()>minUsers) and (query['grpName'] != "" and query['grpName'] != None):
-            print("a")
-            dbf.createGroup(query['grpName'])
-            dbf.addToGroup(request.session["user"],query["grpName"])
-            dbf.addToGroup(query["newGuys"],query["grpName"])
-            return redirect(groupList)
+        if "newGuys" in query :
+            if (maxUsers() == None or maxUsers()>minUsers) and (query['grpName'] != "" and query['grpName'] != None):
+                print("a")
+                dbf.createGroup(query['grpName'])
+                dbf.addToGroup(request.session["user"],query["grpName"])
+                dbf.addToGroup(query["newGuys"],query["grpName"])
+                return redirect(groupList)
     listUsers = dbf.getGrouplesUsers()
     listeUser2 = []
     for i in listUsers:
@@ -94,5 +95,20 @@ def groupCreate(request):
             listeUser2.append(i)
             
     return render(request,"groupCreate.html",{"users" : listeUser2})
+
 def adminPage(request):
-    pass
+    allUsers = dbf.getAllUsers()
+    allGroups = dbf.getGroups()
+    NbUsers = allUsers.count()
+    NbGroups = allGroups.count()
+    listUsers = []
+    listGroups = []
+    maxU=0
+    for user in allUsers:
+        listUsers.append(user.username)
+    for group in allGroups:
+        count = dbf.getCountUsersFromGroup(group.name)
+        listGroups.append((group.name,count))
+        maxU = max(maxU,count)
+    return render(request,"adminPage.html",{"NbUsers":NbUsers,"listUsers" : listUsers,"NbGroups":NbGroups,"listGroups" : listGroups,"max":maxU})
+    

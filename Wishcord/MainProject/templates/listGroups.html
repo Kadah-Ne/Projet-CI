@@ -3,6 +3,7 @@
 <title>Messagerie</title>
 {%endblock%}
 {%block body%}
+<div class="mainGroupList">
     <div class="grpSelector">
     {%for group,users in groups.items%}
         <form action="" method="POST" >
@@ -21,5 +22,13 @@
         <button type="submit">Rejoindre un groupe aléatoire</button>
     </form>
     </div>
-    
+    <div class="divlistGrpLess">
+        Utilisateurs sans groupes
+        <div class="listGrpLess">
+            {% for userT in listUser %}
+                <p>{{userT}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {%endblock%}
